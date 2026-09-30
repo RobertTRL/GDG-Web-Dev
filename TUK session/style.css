@@ -1,0 +1,168 @@
+/* ---------- Tokens ---------- */
+:root {
+  --page: #e4e7ec;
+  --body: #f5f6f8;
+  --screen: #eceef2;
+  --key: #ffffff;
+  --key-fn: #dde1e9;
+  --key-op: #e2e6fb;
+  --ink: #171a21;
+  --ink-soft: #5d6473;
+  --accent: #3b4cca;
+  --accent-ink: #ffffff;
+  --danger: #c4372b;
+
+  --gap: 12px;
+  --font: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: var(--page);
+  color: var(--ink);
+  font-family: var(--font);
+}
+
+/* ---------- Calculator body ---------- */
+.calculator {
+  width: min(360px, 100%);
+  padding: 20px;
+  background: var(--body);
+  border-radius: 36px;
+  box-shadow: 0 24px 48px -24px rgba(23, 26, 33, 0.28);
+}
+
+/* ---------- Display ---------- */
+.display {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* keeps the newest characters in view */
+  height: 92px;
+  margin-bottom: 20px;
+  padding: 0 22px;
+  overflow: hidden;
+  background: var(--screen);
+  border-radius: 26px;
+  font-size: 2.25rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.expression {
+  white-space: pre;
+}
+
+.cursor {
+  flex: none;
+  width: 2px;
+  height: 1.15em;
+  margin-left: 3px;
+  background: var(--accent);
+  border-radius: 1px;
+  animation: blink 1.05s steps(1) infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ---------- Keypad ---------- */
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap);
+}
+
+.key {
+  /* Squircle: a big rounded corner as the fallback... */
+  aspect-ratio: 1;
+  border: 0;
+  border-radius: 34%;
+  background: var(--key);
+  color: var(--ink);
+  font: inherit;
+  font-size: 1.5rem;
+  font-weight: 600;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 90ms ease, filter 120ms ease;
+}
+
+/* ...and a true squircle where the browser supports corner-shape */
+@supports (corner-shape: squircle) {
+  .key {
+    corner-shape: squircle;
+    border-radius: 42%;
+  }
+}
+
+.key:hover {
+  filter: brightness(0.97);
+}
+
+.key:active,
+.key.is-pressed {
+  transform: scale(0.94);
+}
+
+.key:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Key variants */
+.key--fn {
+  background: var(--key-fn);
+  color: var(--ink-soft);
+}
+
+.key--clear {
+  color: var(--danger);
+  font-size: 1.25rem;
+}
+
+.key--op {
+  background: var(--key-op);
+  color: var(--accent);
+  font-size: 1.75rem;
+}
+
+.key--equals {
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 1.75rem;
+}
+
+/* ---------- Motion preferences ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .cursor {
+    animation: none;
+  }
+  .key {
+    transition: none;
+  }
+}
