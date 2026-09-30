@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calculator</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="calculator">
+
+    <!-- Display: the text goes inside #expression, the blinking cursor is pure CSS -->
+    <div class="display" aria-label="Calculator display" aria-live="polite">
+      <span class="expression" id="expression"></span>
+      <span class="cursor" aria-hidden="true"></span>
+    </div>
+
+    <!--
+      Keypad
+      - data-value  → something to type into the display
+      - data-action → something to DO (clear | delete | equals)
+    -->
+    <div class="keypad" id="keypad">
+      <button class="key key--fn key--clear" data-action="clear" aria-label="All clear">AC</button>
+      <button class="key key--fn" data-value="(">(</button>
+      <button class="key key--fn" data-value=")">)</button>
+      <button class="key key--fn" data-action="delete" aria-label="Delete last character">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor"
+             stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M9 5h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-6-7 6-7z" />
+          <path d="M13 10l4 4M17 10l-4 4" />
+        </svg>
+      </button>
+
+      <button class="key" data-value="1">1</button>
+      <button class="key" data-value="2">2</button>
+      <button class="key" data-value="3">3</button>
+      <button class="key key--op" data-value="÷" aria-label="Divide">÷</button>
+
+      <button class="key" data-value="4">4</button>
+      <button class="key" data-value="5">5</button>
+      <button class="key" data-value="6">6</button>
+      <button class="key key--op" data-value="×" aria-label="Multiply">×</button>
+
+      <button class="key" data-value="7">7</button>
+      <button class="key" data-value="8">8</button>
+      <button class="key" data-value="9">9</button>
+      <button class="key key--op" data-value="−" aria-label="Subtract">−</button>
+
+      <button class="key" data-value=".">.</button>
+      <button class="key" data-value="0">0</button>
+      <button class="key key--equals" data-action="equals" aria-label="Equals">=</button>
+      <button class="key key--op" data-value="+" aria-label="Add">+</button>
+    </div>
+
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
