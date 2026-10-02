@@ -185,41 +185,72 @@ function equals() {
 // TODO 1 — Select the elements you need
 //   • the <span id="expression"> that shows the text
 //   • the <div id="keypad"> that holds all the buttons
-
+const expressionDisplay = document.getElementById("expression");
+const keypad = document.getElementById("keypad");
 
 // TODO 2 — Write render()
 //   Put the current `expression` into the display.
 function render() {
-  // ...
+  expressionDisplay.textContent = expression;
 }
+  // ...
+  
 
 
 // TODO 3 — Handle clicks on the keypad
 //   Use ONE listener on the keypad (event delegation), not one per button.
 //   Inside the handler:
+keypad.addEventListener("click", function (event) {
 //     1. Find the button that was clicked (hint: event.target.closest("button")).
 //        If the click wasn't on a button, do nothing.
+const button = event.target.closest("button");
+  if (!button) return; // If the click wasn't on a button, do nothing
 //     2. Read its data attributes (hint: element.dataset).
 //          data-action → "clear" | "delete" | "equals"
 //                        → call clearAll() / backspace() / equals()
 //          data-value  → call press(value)
+const action = button.dataset.action;
+  const value = button.dataset.value;
+
+  if (action === "clear") {
+    clearAll();
+  } else if (action === "delete") {
+    backspace();
+  } else if (action === "equals") {
+    equals();
+  } else if (value) {
+    press(value);
+  }
 //     3. Call render() so the display updates.
+render();
+});
 
 
 // TODO 4 — Call render() once when the page loads,
 //   so the display starts in sync with `expression`.
+render();
 
 
 // BONUS A — Keyboard support
-//   Listen for "keydown" on document.
-//     • 0-9 . ( ) + - * /  → press(event.key)
-//     • Enter or =          → equals()   (Enter can trigger a focused button, so preventDefault!)
-//     • Backspace           → backspace()
-//     • Escape              → clearAll()
-//   Then render().
+// BONUS A — Keyboard support
+document.addEventListener("keydown", function (event) {
+  const key = event.key;
 
+  // Allowed keys for calculations
+  const validValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "(", ")", "+", "-", "*", "/"];
 
-// BONUS B — Show the key press
-//   When a key is pressed on the keyboard, add the class "is-pressed" to the matching
-//   button for ~120ms, then remove it (hint: querySelector with an attribute selector,
-//   setTimeout). Remember the buttons use × ÷ −, and ALIASES maps the keyboard's * / -.
+  if (validValues.includes(key)) {
+    press(key);
+  } else if (key === "Enter" || key === "=") {
+    event.preventDefault(); // Prevent triggering focused buttons
+    equals();
+  } else if (key === "Backspace") {
+    backspace();
+  } else if (key === "Escape") {
+    clearAll();
+  } else {
+    return; // Don't re-render if an unrelated key was pressed
+  }
+
+  render();
+});
