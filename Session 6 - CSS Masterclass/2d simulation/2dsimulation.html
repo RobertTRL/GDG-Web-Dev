@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2D Transform Simulation</title>
+    <link rel="stylesheet" href="2dsimulation.css">
+    <script src="2dsimulation.js" defer></script>
+</head>
+<body>
+<article>
+  <fieldset id="allTransformFieldset">
+    <legend>
+      Transform settings
+      <button id="resetAllButton" aria-label="Reset">↻</button>
+    </legend>
+    <section id="fieldsetSection">
+
+      <fieldset class="transformFieldset">
+        <legend>
+          <label><span>Translation</span></label>
+          <button id="translateSectionReset" class="resetSectionButton" aria-label="Reset">↻</button>
+        </legend>
+        <div class="controlsContainer">
+          <div>
+            <label>
+              <span id="translateXLabel">X</span>
+              <input type="range" min="-150" max="150" value="0" data-default="0"
+                id="translateXRange" aria-labelledby="translateXLabel" />
+            </label>
+            <output id="translateXOutput" for="translateXRange"></output>
+          </div>
+          <div>
+            <label>
+              <span id="translateYLabel">Y</span>
+              <input type="range" min="-150" max="150" value="0" data-default="0"
+                id="translateYRange" aria-labelledby="translateYLabel" />
+            </label>
+            <output id="translateYOutput" for="translateYRange"></output>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="transformFieldset">
+        <legend>
+          <label><span>Rotation</span></label>
+          <button id="rotateSectionReset" class="resetSectionButton" aria-label="Reset">↻</button>
+        </legend>
+        <div class="controlsContainer">
+          <div>
+            <label>
+              <span id="rotateLabel">Angle</span>
+              <input type="range" min="-360" max="360" value="0" data-default="0"
+                id="rotateRange" aria-labelledby="rotateLabel" />
+            </label>
+            <output id="rotateOutput" for="rotateRange"></output>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="transformFieldset">
+        <legend>
+          <label><span>Scale</span></label>
+          <button id="scaleSectionReset" class="resetSectionButton" aria-label="Reset">↻</button>
+        </legend>
+        <div class="controlsContainer">
+          <div>
+            <label>
+              <span id="scaleXLabel">X</span>
+              <input type="range" min="-2.5" max="2.5" step="0.1" value="1" data-default="1"
+                id="scaleXRange" aria-labelledby="scaleXLabel" />
+            </label>
+            <output id="scaleXOutput" for="scaleXRange"></output>
+          </div>
+          <div>
+            <label>
+              <span id="scaleYLabel">Y</span>
+              <input type="range" min="-2.5" max="2.5" step="0.1" value="1" data-default="1"
+                id="scaleYRange" aria-labelledby="scaleYLabel" />
+            </label>
+            <output id="scaleYOutput" for="scaleYRange"></output>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="transformFieldset">
+        <legend>
+          <label><span>Skew</span></label>
+          <button id="skewSectionReset" class="resetSectionButton" aria-label="Reset">↻</button>
+        </legend>
+        <div class="controlsContainer">
+          <div>
+            <label>
+              <span id="skewXLabel">X</span>
+              <input type="range" min="-80" max="80" value="0" data-default="0"
+                id="skewXRange" aria-labelledby="skewXLabel" />
+            </label>
+            <output id="skewXOutput" for="skewXRange"></output>
+          </div>
+          <div>
+            <label>
+              <span id="skewYLabel">Y</span>
+              <input type="range" min="-80" max="80" value="0" data-default="0"
+                id="skewYRange" aria-labelledby="skewYLabel" />
+            </label>
+            <output id="skewYOutput" for="skewYRange"></output>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="transformFieldset">
+        <legend>
+          <label><span>Transform Origin</span></label>
+          <button id="originSectionReset" class="resetSectionButton" aria-label="Reset">↻</button>
+        </legend>
+        <div class="controlsContainer">
+          <div>
+            <label>
+              <span id="originXLabel"><code>transform-origin</code> X (%)</span>
+              <input type="range" min="-50" max="150" value="50" data-default="50"
+                id="originXRange" aria-labelledby="originXLabel" />
+            </label>
+            <output id="originXOutput" for="originXRange"></output>
+          </div>
+          <div>
+            <label>
+              <span id="originYLabel"><code>transform-origin</code> Y (%)</span>
+              <input type="range" min="-50" max="150" value="50" data-default="50"
+                id="originYRange" aria-labelledby="originYLabel" />
+            </label>
+            <output id="originYOutput" for="originYRange"></output>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="transformFieldset">
+        <legend>
+          <label><span>Other Properties</span></label>
+          <button id="otherSectionReset" class="resetSectionButton" aria-label="Reset">↻</button>
+        </legend>
+        <div class="controlsContainer">
+          <div>
+            <label>
+              <span>Show original (ghost)</span>
+              <input type="checkbox" checked data-default="checked" id="ghostCheckbox" />
+            </label>
+          </div>
+          <div>
+            <label>
+              <span>Show origin point</span>
+              <input type="checkbox" checked data-default="checked" id="originDotCheckbox" />
+            </label>
+          </div>
+        </div>
+      </fieldset>
+
+    </section>
+  </fieldset>
+
+  <section id="outputSection">
+    <div id="stage">
+      <div id="ghost"></div>
+      <div id="boxWrap">
+        <div id="box">F</div>
+        <div id="originDot"></div>
+      </div>
+    </div>
+  </section>
+
+  <pre id="cssOutput" aria-label="Generated CSS"></pre>
+</article>
+</body>
+</html>

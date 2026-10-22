@@ -1,0 +1,155 @@
+body {
+  margin: 8px;
+}
+
+#allTransformFieldset {
+  border: none;
+  padding: 0;
+  margin-bottom: 4px;
+  accent-color: blue;
+  font-family:
+    "Inter", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+#allTransformFieldset > legend {
+  margin-bottom: 4px;
+}
+
+fieldset {
+  margin: 0;
+}
+
+legend {
+  font-weight: bold;
+  padding: 0;
+}
+
+#fieldsetSection {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: 8px;
+}
+
+.transformFieldset {
+  margin: 0;
+}
+
+.controlsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 4px;
+  width: 100%;
+}
+
+.controlsContainer > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.controlsContainer > div > label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+button {
+  font-size: 18px;
+  border-radius: 50%;
+  border: #cccccc solid 1px;
+  padding: 0;
+  width: 26px;
+  height: 26px;
+  margin-left: 4px;
+}
+
+input[type="range"] {
+  width: 172px;
+}
+
+output {
+  width: 3em;
+}
+
+/* ---------- Output area ---------- */
+
+#outputSection {
+  width: 100%;
+  min-height: 400px;
+  background-color: #f7f7f2;
+  /* faint grid + centered axes */
+  background-image:
+    linear-gradient(to right, transparent calc(50% - 1px), rgb(0 0 0 / 0.35) calc(50% - 1px), rgb(0 0 0 / 0.35) calc(50% + 1px), transparent calc(50% + 1px)),
+    linear-gradient(to bottom, transparent calc(50% - 1px), rgb(0 0 0 / 0.35) calc(50% - 1px), rgb(0 0 0 / 0.35) calc(50% + 1px), transparent calc(50% + 1px)),
+    linear-gradient(to right, rgb(0 0 0 / 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(0 0 0 / 0.07) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 25px 25px, 25px 25px;
+  background-position: center, center, center, center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: clip;
+}
+
+/* 100x100 anchor in the middle of the output area */
+#stage {
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+
+#ghost {
+  position: absolute;
+  inset: 0;
+  outline: 2px dashed rgb(0 0 0 / 0.4);
+  pointer-events: none;
+}
+
+/* Receives translate only, so the origin dot moves with the shape */
+#boxWrap {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.075s ease-out;
+}
+
+#box {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(to right bottom, rgb(40 90 230 / 0.8), rgb(210 0 90 / 0.8));
+  outline: 2px solid rgb(0 0 0 / 0.5);
+  transition: transform 0.075s ease-out;
+  user-select: none;
+}
+
+#originDot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+  background-color: rgb(240 0 0);
+  outline: 2px solid white;
+  pointer-events: none;
+}
+
+#cssOutput {
+  margin: 8px 0 0;
+  padding: 8px 12px;
+  background: #1e1e1e;
+  color: #d4d4d4;
+  border-radius: 4px;
+  font-size: 13px;
+  white-space: pre-wrap;
+}
