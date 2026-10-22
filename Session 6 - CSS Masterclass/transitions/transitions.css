@@ -1,0 +1,247 @@
+body {
+  margin: 8px;
+}
+
+#allTransitionFieldset {
+  border: none;
+  padding: 0;
+  margin-bottom: 4px;
+  accent-color: rebeccapurple;
+  font-family:
+    "Inter", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+#allTransitionFieldset > legend {
+  margin-bottom: 4px;
+}
+
+fieldset {
+  margin: 0;
+}
+
+legend {
+  font-weight: bold;
+  padding: 0;
+}
+
+#fieldsetSection {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: 8px;
+}
+
+.transitionFieldset {
+  margin: 0;
+}
+
+.controlsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 4px;
+  width: 100%;
+}
+
+.controlsContainer > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.controlsContainer > div > label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.hint {
+  max-width: 240px;
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: #555;
+}
+
+button {
+  font-size: 18px;
+  border-radius: 50%;
+  border: #cccccc solid 1px;
+  padding: 0;
+  width: 26px;
+  height: 26px;
+  margin-left: 4px;
+}
+
+.textButton {
+  width: auto;
+  height: auto;
+  border-radius: 6px;
+  font-size: 14px;
+  padding: 4px 10px;
+  margin: 0;
+  cursor: pointer;
+}
+
+input[type="range"] {
+  width: 172px;
+}
+
+select {
+  font-size: 14px;
+  padding: 3px 6px;
+}
+
+output {
+  width: 3em;
+}
+
+/* ---------- Output area ---------- */
+
+#outputSection {
+  width: 100%;
+  min-height: 300px;
+  background: linear-gradient(#f3f0fa, #faf6e6);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 24px 12px;
+  box-sizing: border-box;
+  font-family: "Inter", "Segoe UI", "Roboto", sans-serif;
+}
+
+/* Settings are passed down as custom properties set from JS,
+   because the transition-* properties themselves don't inherit. */
+#track {
+  width: 440px;
+  max-width: 100%;
+  padding: 10px;
+  box-sizing: content-box;
+  border: 2px dashed rgb(0 0 0 / 0.2);
+  border-radius: 12px;
+}
+
+#bar,
+#badge {
+  transition-property: var(--tp, all);
+  transition-duration: var(--td, 1s);
+  transition-timing-function: var(--tf, ease);
+  transition-delay: var(--tdelay, 0s);
+  transition-behavior: var(--tb, normal);
+}
+
+#bar {
+  position: relative;
+  width: 100%;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  background: rebeccapurple;
+  color: white;
+  border-radius: 45px;
+  font-size: 20px;
+  font-weight: 600;
+  white-space: nowrap;
+  user-select: none;
+}
+
+#bar::after {
+  content: "Hover me";
+}
+
+#badge {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: crimson;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  /* Rest state: hidden. `display` is a discrete property. */
+  display: none;
+  opacity: 0;
+}
+
+/* Hover state (or the manual toggle) */
+#track:hover #bar,
+#track.active #bar {
+  width: 50%;
+  background: gold;
+  color: #3a2a00;
+  border-radius: 14px;
+}
+
+#track:hover #bar::after,
+#track.active #bar::after {
+  content: "Transitioned!";
+}
+
+#track:hover #badge,
+#track.active #badge {
+  display: block;
+  opacity: 1;
+}
+
+/* Gives `display: none → block` something to fade in from */
+@starting-style {
+  #track:hover #badge,
+  #track.active #badge {
+    opacity: 0;
+  }
+}
+
+#trackHint {
+  margin: 0;
+  font-size: 12px;
+  color: #666;
+}
+
+/* ---------- Readouts ---------- */
+
+#readouts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+#cssOutput,
+#eventLog {
+  margin: 0;
+  padding: 8px 12px;
+  background: #1e1e1e;
+  color: #d4d4d4;
+  border-radius: 4px;
+  font-size: 13px;
+  white-space: pre-wrap;
+}
+
+#cssOutput {
+  flex: 1 1 340px;
+}
+
+#logWrapper {
+  flex: 1 1 340px;
+  font-family: "Inter", "Segoe UI", "Roboto", sans-serif;
+  font-size: 14px;
+}
+
+#logHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+#eventLog {
+  min-height: 130px;
+  box-sizing: border-box;
+}

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Transition Playground</title>
+    <link rel="stylesheet" href="transitions.css">
+    <script src="transitions.js" defer></script>
+</head>
+<body>
+<article>
+  <fieldset id="allTransitionFieldset">
+    <legend>
+      Transition settings
+      <button id="resetAllButton" aria-label="Reset all">↻</button>
+    </legend>
+    <section id="fieldsetSection">
+
+      <fieldset class="transitionFieldset">
+        <legend>
+          <label><span><code>transition-property</code></span></label>
+          <button class="resetSectionButton" aria-label="Reset">↻</button>
+        </legend>
+        <div class="controlsContainer">
+          <div>
+            <label>
+              <input type="checkbox" checked data-default="checked" id="enableCheckbox" />
+              <span>Enable transition</span>
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="checkbox" checked data-default="checked" data-prop="all" id="propAll" />
+              <span><code>all</code></span>
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="checkbox" data-default="unchecked" data-prop="width" />
+              <span><code>width</code></span>
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="checkbox" data-default="unchecked" data-prop="background-color" />
+              <span><code>background-color</code></span>
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="checkbox" data-default="unchecked" data-prop="color" />
+              <span><code>color</code></span>
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="checkbox" data-default="unchecked" data-prop="border-radius" />
+              <span><code>border-radius</code></span>
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="checkbox" data-default="unchecked" data-prop="opacity" />
+              <span><code>opacity</code> (badge)</span>
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="checkbox" data-default="unchecked" data-prop="display" />
+              <span><code>display</code> (badge)</span>
+            </label>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="transitionFieldset">
+        <legend>
+          <label><span><code>transition-duration</code></span></label>
+          <button class="resetSectionButton" aria-label="Reset">↻</button>
+        </legend>
+        <div class="controlsContainer">
+          <div>
+            <label>
+              <span id="durationLabel">Time</span>
+              <input type="range" min="0" max="5" step="0.1" value="1" data-default="1"
+                id="durationRange" aria-labelledby="durationLabel" />
+            </label>
+            <output id="durationOutput" for="durationRange"></output>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="transitionFieldset">
+        <legend>
+          <label><span><code>transition-timing-function</code></span></label>
+          <button class="resetSectionButton" aria-label="Reset">↻</button>
+        </legend>
+        <div class="controlsContainer">
+          <div>
+            <select id="timingSelect" data-default="ease" aria-label="transition-timing-function">
+              <option value="ease" selected>ease</option>
+              <option value="linear">linear</option>
+              <option value="ease-in">ease-in</option>
+              <option value="ease-out">ease-out</option>
+              <option value="ease-in-out">ease-in-out</option>
+              <option value="step-start">step-start</option>
+              <option value="step-end">step-end</option>
+              <option value="steps(4, jump-start)">steps(4, jump-start)</option>
+              <option value="steps(4, jump-end)">steps(4, jump-end)</option>
+              <option value="steps(4, jump-both)">steps(4, jump-both)</option>
+              <option value="steps(4, jump-none)">steps(4, jump-none)</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="transitionFieldset">
+        <legend>
+          <label><span><code>transition-delay</code></span></label>
+          <button class="resetSectionButton" aria-label="Reset">↻</button>
+        </legend>
+        <div class="controlsContainer">
+          <div>
+            <label>
+              <span id="delayLabel">Time</span>
+              <input type="range" min="-2" max="3" step="0.1" value="0" data-default="0"
+                id="delayRange" aria-labelledby="delayLabel" />
+            </label>
+            <output id="delayOutput" for="delayRange"></output>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="transitionFieldset">
+        <legend>
+          <label><span><code>transition-behavior</code></span></label>
+          <button class="resetSectionButton" aria-label="Reset">↻</button>
+        </legend>
+        <div class="controlsContainer">
+          <div>
+            <select id="behaviorSelect" data-default="normal" aria-label="transition-behavior">
+              <option value="normal" selected>normal</option>
+              <option value="allow-discrete">allow-discrete</option>
+            </select>
+          </div>
+          <p class="hint">
+            Only matters for discrete properties like <code>display</code>. Tick
+            <code>opacity</code> + <code>display</code> (or <code>all</code>), then
+            switch to <code>allow-discrete</code> and watch the badge fade out
+            instead of vanishing.
+          </p>
+        </div>
+      </fieldset>
+
+    </section>
+  </fieldset>
+
+  <section id="outputSection">
+    <!-- Hover the track, not the bar: the bar shrinks, which would otherwise
+         make it lose :hover and flicker. -->
+    <div id="track">
+      <div id="bar">
+        <span id="badge">NEW</span>
+      </div>
+    </div>
+    <p id="trackHint">Hover the dashed area (or use the button on touch screens)</p>
+    <div id="actions">
+      <button id="toggleButton" class="textButton">Toggle state</button>
+    </div>
+  </section>
+
+  <section id="readouts">
+    <pre id="cssOutput" aria-label="Generated CSS"></pre>
+    <div id="logWrapper">
+      <div id="logHeader">
+        <strong>Transition events</strong>
+        <button id="clearLogButton" class="textButton">Clear</button>
+      </div>
+      <pre id="eventLog" aria-live="off"></pre>
+    </div>
+  </section>
+</article>
+</body>
+</html>
