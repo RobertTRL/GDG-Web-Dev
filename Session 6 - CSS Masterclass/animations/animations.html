@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Animation Playground</title>
+    <link rel="stylesheet" href="animations.css">
+    <script src="animations.js" defer></script>
+</head>
+<body>
+<article>
+  <fieldset id="allAnimationFieldset">
+    <legend>
+      Animation settings
+      <button id="resetAllButton" aria-label="Reset all">↻</button>
+    </legend>
+    <section id="fieldsetSection">
+
+      <fieldset class="animationFieldset">
+        <legend>
+          <label><span><code>animation-name</code></span></label>
+          <button class="resetSectionButton" aria-label="Reset">↻</button>
+        </legend>
+        <div class="controlsContainer">
+          <div>
+            <select id="nameSelect" data-default="slide" aria-label="animation-name">
+              <option value="slide" selected>slide</option>
+              <option value="bounce">bounce</option>
+              <option value="pulse">pulse</option>
+              <option value="none">none</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="animationFieldset">
+        <legend>
+          <label><span><code>animation-duration</code></span></label>
+          <button class="resetSectionButton" aria-label="Reset">↻</button>
+        </legend>
+        <div class="controlsContainer">
+          <div>
+            <label>
+              <span id="durationLabel">Time</span>
+              <input type="range" min="0.2" max="5" step="0.1" value="2" data-default="2"
+                id="durationRange" aria-labelledby="durationLabel" />
+            </label>
+            <output id="durationOutput" for="durationRange"></output>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="animationFieldset">
+        <legend>
+          <label><span><code>animation-timing-function</code></span></label>
+          <button class="resetSectionButton" aria-label="Reset">↻</button>
+        </legend>
+        <div class="controlsContainer">
+          <div>
+            <select id="timingSelect" data-default="ease-in-out" aria-label="animation-timing-function">
+              <option value="ease">ease</option>
+              <option value="linear">linear</option>
+              <option value="ease-in">ease-in</option>
+              <option value="ease-out">ease-out</option>
+              <option value="ease-in-out" selected>ease-in-out</option>
+              <option value="step-start">step-start</option>
+              <option value="step-end">step-end</option>
+              <option value="steps(4, jump-start)">steps(4, jump-start)</option>
+              <option value="steps(4, jump-end)">steps(4, jump-end)</option>
+              <option value="steps(4, jump-both)">steps(4, jump-both)</option>
+              <option value="steps(4, jump-none)">steps(4, jump-none)</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="animationFieldset">
+        <legend>
+          <label><span><code>animation-delay</code></span></label>
+          <button class="resetSectionButton" aria-label="Reset">↻</button>
+        </legend>
+        <div class="controlsContainer">
+          <div>
+            <label>
+              <span id="delayLabel">Time</span>
+              <input type="range" min="-2" max="3" step="0.1" value="0" data-default="0"
+                id="delayRange" aria-labelledby="delayLabel" />
+            </label>
+            <output id="delayOutput" for="delayRange"></output>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="animationFieldset">
+        <legend>
+          <label><span><code>animation-iteration-count</code></span></label>
+          <button class="resetSectionButton" aria-label="Reset">↻</button>
+        </legend>
+        <div class="controlsContainer">
+          <div>
+            <label>
+              <span id="iterationLabel">Count</span>
+              <input type="range" min="0.5" max="10" step="0.5" value="1" data-default="1"
+                id="iterationRange" aria-labelledby="iterationLabel" />
+            </label>
+            <output id="iterationOutput" for="iterationRange"></output>
+          </div>
+          <div>
+            <label>
+              <input type="checkbox" data-default="unchecked" id="infiniteCheckbox" />
+              <span><code>infinite</code></span>
+            </label>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="animationFieldset">
+        <legend>
+          <label><span><code>animation-direction</code></span></label>
+          <button class="resetSectionButton" aria-label="Reset">↻</button>
+        </legend>
+        <div class="controlsContainer">
+          <div>
+            <select id="directionSelect" data-default="normal" aria-label="animation-direction">
+              <option value="normal" selected>normal</option>
+              <option value="reverse">reverse</option>
+              <option value="alternate">alternate</option>
+              <option value="alternate-reverse">alternate-reverse</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="animationFieldset">
+        <legend>
+          <label><span><code>animation-fill-mode</code></span></label>
+          <button class="resetSectionButton" aria-label="Reset">↻</button>
+        </legend>
+        <div class="controlsContainer">
+          <div>
+            <select id="fillSelect" data-default="none" aria-label="animation-fill-mode">
+              <option value="none" selected>none</option>
+              <option value="forwards">forwards</option>
+              <option value="backwards">backwards</option>
+              <option value="both">both</option>
+            </select>
+          </div>
+          <p class="hint">
+            The box rests as purple, but the keyframes start gold and end
+            tomato. Add a delay with <code>backwards</code> to see gold
+            early, or <code>forwards</code> to keep the end state.
+          </p>
+        </div>
+      </fieldset>
+
+      <fieldset class="animationFieldset">
+        <legend>
+          <label><span><code>animation-play-state</code></span></label>
+          <button class="resetSectionButton" aria-label="Reset">↻</button>
+        </legend>
+        <div class="controlsContainer">
+          <div>
+            <select id="playStateSelect" data-default="running" aria-label="animation-play-state">
+              <option value="running" selected>running</option>
+              <option value="paused">paused</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="animationFieldset">
+        <legend>
+          <label><span><code>animation-timeline</code></span></label>
+          <button class="resetSectionButton" aria-label="Reset">↻</button>
+        </legend>
+        <div class="controlsContainer">
+          <div>
+            <select id="timelineSelect" data-default="auto" aria-label="animation-timeline">
+              <option value="auto" selected>auto (time)</option>
+              <option value="scroll()">scroll()</option>
+              <option value="view()">view()</option>
+            </select>
+          </div>
+          <p class="hint" id="timelineNote">
+            <code>scroll()</code> ties progress to how far the box on the right
+            is scrolled; <code>view()</code> ties it to the element moving
+            through the visible area. Time-based duration and delay don't apply
+            in those modes.
+          </p>
+        </div>
+      </fieldset>
+
+    </section>
+  </fieldset>
+
+  <section id="outputSection">
+    <div id="scroller" class="mode-auto" tabindex="0" aria-label="Animation stage">
+      <div id="scrollContent">
+        <div id="actor"></div>
+      </div>
+    </div>
+    <div id="actions">
+      <button id="restartButton" class="textButton">↻ Restart</button>
+      <button id="pauseButton" class="textButton">Pause</button>
+    </div>
+    <p id="stageHint">Changing a setting restarts the animation (except play-state).</p>
+  </section>
+
+  <section id="readouts">
+    <div class="readoutColumn">
+      <pre id="cssOutput" aria-label="Generated CSS"></pre>
+      <pre id="keyframesOutput" aria-label="Keyframes"></pre>
+    </div>
+    <div id="logWrapper">
+      <div id="logHeader">
+        <strong>Animation events</strong>
+        <button id="clearLogButton" class="textButton">Clear</button>
+      </div>
+      <pre id="eventLog" aria-live="off"></pre>
+    </div>
+  </section>
+</article>
+</body>
+</html>

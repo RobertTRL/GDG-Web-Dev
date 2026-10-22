@@ -1,0 +1,289 @@
+body {
+  margin: 8px;
+}
+
+#allAnimationFieldset {
+  border: none;
+  padding: 0;
+  margin-bottom: 4px;
+  accent-color: rebeccapurple;
+  font-family:
+    "Inter", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+#allAnimationFieldset > legend {
+  margin-bottom: 4px;
+}
+
+fieldset {
+  margin: 0;
+}
+
+legend {
+  font-weight: bold;
+  padding: 0;
+}
+
+#fieldsetSection {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: 8px;
+}
+
+.animationFieldset {
+  margin: 0;
+}
+
+.controlsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 4px;
+  width: 100%;
+}
+
+.controlsContainer > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.controlsContainer > div > label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.hint {
+  max-width: 240px;
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: #555;
+}
+
+button {
+  font-size: 18px;
+  border-radius: 50%;
+  border: #cccccc solid 1px;
+  padding: 0;
+  width: 26px;
+  height: 26px;
+  margin-left: 4px;
+}
+
+.textButton {
+  width: auto;
+  height: auto;
+  border-radius: 6px;
+  font-size: 14px;
+  padding: 4px 10px;
+  margin: 0;
+  cursor: pointer;
+}
+
+input[type="range"] {
+  width: 172px;
+}
+
+input:disabled,
+input:disabled + span {
+  opacity: 0.45;
+}
+
+select {
+  font-size: 14px;
+  padding: 3px 6px;
+}
+
+output {
+  width: 3em;
+}
+
+/* ---------- Output area ---------- */
+
+#outputSection {
+  width: 100%;
+  min-height: 340px;
+  background: linear-gradient(#f3f0fa, #faf6e6);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 24px 12px;
+  box-sizing: border-box;
+  font-family: "Inter", "Segoe UI", "Roboto", sans-serif;
+}
+
+/* The stage is a scroller so animation-timeline: scroll() / view()
+   have something to follow. In "auto" mode it simply doesn't scroll. */
+#scroller {
+  width: 380px;
+  max-width: 100%;
+  height: 260px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  position: relative;
+  background: rgb(255 255 255 / 0.7);
+  border: 2px dashed rgb(0 0 0 / 0.2);
+  border-radius: 12px;
+}
+
+#scrollContent {
+  box-sizing: border-box;
+  padding-left: 16px;
+}
+
+#scroller.mode-auto #scrollContent {
+  height: 100%;
+}
+
+/* scroll(): the actor stays in view while the scroller's progress drives it */
+#scroller.mode-scroll #scrollContent {
+  height: 800px;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0 59px,
+    rgb(0 0 0 / 0.08) 59px 60px
+  );
+}
+
+/* view(): the actor scrolls past, and its progress through the scrollport drives it */
+#scroller.mode-view #scrollContent {
+  height: 800px;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0 59px,
+    rgb(0 0 0 / 0.08) 59px 60px
+  );
+}
+
+#actor {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  background: rebeccapurple;
+
+  /* Settings arrive as custom properties set from JS */
+  animation-name: var(--an, slide);
+  animation-duration: var(--ad, 2s);
+  animation-timing-function: var(--atf, ease-in-out);
+  animation-delay: var(--adelay, 0s);
+  animation-iteration-count: var(--aic, 1);
+  animation-direction: var(--adir, normal);
+  animation-fill-mode: var(--afm, none);
+  animation-play-state: var(--aps, running);
+  animation-timeline: var(--atl, auto);
+}
+
+#scroller.mode-auto #actor {
+  position: relative;
+  top: calc(50% - 30px);
+}
+
+#scroller.mode-scroll #actor {
+  position: sticky;
+  top: 100px;
+}
+
+#scroller.mode-view #actor {
+  margin-top: 360px;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0) rotate(0deg);
+    background: gold;
+  }
+  to {
+    transform: translateX(270px) rotate(360deg);
+    background: tomato;
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    background: gold;
+  }
+  50% {
+    transform: translateY(-90px);
+    background: tomato;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    border-radius: 12px;
+    background: gold;
+  }
+  50% {
+    transform: scale(1.8);
+    border-radius: 50%;
+    background: tomato;
+  }
+}
+
+#actions {
+  display: flex;
+  gap: 8px;
+}
+
+#stageHint {
+  margin: 0;
+  font-size: 12px;
+  color: #666;
+}
+
+/* ---------- Readouts ---------- */
+
+#readouts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.readoutColumn {
+  flex: 1 1 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#cssOutput,
+#keyframesOutput,
+#eventLog {
+  margin: 0;
+  padding: 8px 12px;
+  background: #1e1e1e;
+  color: #d4d4d4;
+  border-radius: 4px;
+  font-size: 13px;
+  white-space: pre-wrap;
+}
+
+#logWrapper {
+  flex: 1 1 340px;
+  font-family: "Inter", "Segoe UI", "Roboto", sans-serif;
+  font-size: 14px;
+}
+
+#logHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+#eventLog {
+  min-height: 200px;
+  box-sizing: border-box;
+}
