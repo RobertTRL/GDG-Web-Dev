@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <article>
+  <fieldset id="allTransformFieldset">
+    <legend>
+      Transform settings
+      <button id="resetAllButton" aria-label="Reset">↻</button>
+    </legend>
+    <section id="fieldsetSection">
+      <fieldset class="transformFieldset">
+        <legend>
+          <label>
+            <span>Translation</span>
+          </label>
+          <button
+            id="translateSectionReset"
+            class="resetSectionButton"
+            aria-label="Reset">
+            ↻
+          </button>
+        </legend>
+        <div class="controlsContainer">
+          <div>
+            <label>
+              <span id="translateXLabel">X</span>
+              <input
+                type="range"
+                min="-100"
+                max="100"
+                value="0"
+                data-default="0"
+                id="translateXRange"
+                aria-labelledby="translateXLabel" />
+            </label>
+            <output id="translateXOutput" for="translateXRange"></output>
+          </div>
+          <div>
+            <label>
+              <span id="translateYLabel">Y</span>
+              <input
+                type="range"
+                min="-100"
+                max="100"
+                value="0"
+                data-default="0"
+                id="translateYRange"
+                aria-labelledby="translateYLabel" />
+            </label>
+            <output id="translateYOutput" for="translateYRange"></output>
+          </div>
+          <div>
+            <label>
+              <span id="translateZLabel">Z</span>
+              <input
+                type="range"
+                min="-100"
+                max="100"
+                value="0"
+                data-default="0"
+                id="translateZRange"
+                aria-labelledby="translateZLabel" />
+            </label>
+            <output id="translateZOutput" for="translateZRange"></output>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="transformFieldset">
+        <legend>
+          <label>
+            <span>Rotation</span>
+          </label>
+          <button
+            id="rotateSectionReset"
+            class="resetSectionButton"
+            aria-label="Reset">
+            ↻
+          </button>
+        </legend>
+        <div class="controlsContainer">
+          <div>
+            <label>
+              <span id="rotateXLabel">X</span>
+              <input
+                type="range"
+                min="-360"
+                max="360"
+                value="0"
+                data-default="0"
+                id="rotateXRange"
+                aria-labelledby="rotateXLabel" />
+            </label>
+            <output id="rotateXOutput" for="rotateXRange"></output>
+          </div>
+          <div>
+            <label>
+              <span id="rotateYLabel">Y</span>
+              <input
+                type="range"
+                min="-360"
+                max="360"
+                value="0"
+                data-default="0"
+                id="rotateYRange"
+                aria-labelledby="rotateYLabel" />
+            </label>
+            <output id="rotateYOutput" for="rotateYRange"></output>
+          </div>
+          <div>
+            <label>
+              <span id="rotateZLabel">Z</span>
+              <input
+                type="range"
+                min="-360"
+                max="360"
+                value="0"
+                data-default="0"
+                id="rotateZRange"
+                aria-labelledby="rotateZLabel" />
+            </label>
+            <output id="rotateZOutput" for="rotateZRange"></output>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="transformFieldset">
+        <legend>
+          <label>
+            <span>Scale</span>
+          </label>
+          <button
+            id="scaleSectionReset"
+            class="resetSectionButton"
+            aria-label="Reset">
+            ↻
+          </button>
+        </legend>
+        <div class="controlsContainer">
+          <div>
+            <label>
+              <span id="scaleXLabel">X</span>
+              <input
+                type="range"
+                min="0.1"
+                max="2.5"
+                value="1"
+                data-default="1"
+                step="0.1"
+                id="scaleXRange"
+                aria-labelledby="scaleXLabel" />
+            </label>
+            <output id="scaleXOutput" for="scaleXRange"></output>
+          </div>
+          <div>
+            <label id="scaleYLabel">
+              <span>Y</span>
+              <input
+                type="range"
+                min="0.1"
+                max="2.5"
+                value="1"
+                data-default="1"
+                step="0.1"
+                id="scaleYRange"
+                aria-labelledby="scaleYLabel" />
+            </label>
+            <output id="scaleYOutput" for="scaleYRange"></output>
+          </div>
+          <div>
+            <label id="scaleZLabel">
+              <span>Z</span>
+              <input
+                type="range"
+                min="0.1"
+                max="2.5"
+                value="1"
+                data-default="1"
+                step="0.1"
+                id="scaleZRange"
+                aria-labelledby="scaleZLabel" />
+            </label>
+            <output id="scaleZOutput" for="scaleZRange"></output>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="transformFieldset">
+        <legend>
+          <label>
+            <span>Skew</span>
+          </label>
+          <button
+            id="skewSectionReset"
+            class="resetSectionButton"
+            aria-label="Reset">
+            ↻
+          </button>
+        </legend>
+        <div class="controlsContainer">
+          <div>
+            <label>
+              <span id="skewXLabel">X</span>
+              <input
+                type="range"
+                min="-90"
+                max="90"
+                value="0"
+                data-default="0"
+                id="skewXRange"
+                aria-labelledby="skewXLabel" />
+            </label>
+            <output id="skewXOutput" for="skewXRange"></output>
+          </div>
+          <div>
+            <label>
+              <span id="skewYLabel">Y</span>
+              <input
+                type="range"
+                min="-90"
+                max="90"
+                value="0"
+                data-default="0"
+                id="skewYRange"
+                aria-labelledby="skewYLabel" />
+            </label>
+            <output id="skewYOutput" for="skewYRange"></output>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="transformFieldset">
+        <legend>
+          <label>
+            <span>Container Perspective</span>
+          </label>
+          <button
+            id="containerPerspectiveSectionReset"
+            class="resetSectionButton"
+            aria-label="Reset">
+            ↻
+          </button>
+        </legend>
+        <div class="controlsContainer">
+          <div>
+            <label>
+              <span id="perspectiveLabel"><code>perspective</code></span>
+              <input
+                type="range"
+                min="75"
+                max="500"
+                value="200"
+                data-default="200"
+                id="perspectiveRange"
+                aria-labelledby="perspectiveLabel" />
+            </label>
+            <output id="perspectiveOutput" for="perspectiveRange"></output>
+          </div>
+          <div>
+            <label>
+              <span id="perspectiveOriginXLabel"
+                ><code>perspective-origin</code> X (%)</span
+              >
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value="50"
+                data-default="50"
+                id="perspectiveOriginXRange"
+                aria-labelledby="perspectiveOriginXLabel" />
+            </label>
+            <output
+              id="perspectiveOriginXOutput"
+              for="perspectiveOriginXRange"></output>
+          </div>
+          <div>
+            <label>
+              <span><code>perspective-origin</code> Y (%)</span>
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value="50"
+                data-default="50"
+                id="perspectiveOriginYRange"
+                aria-labelledby="perspectiveOriginYLabel" />
+            </label>
+            <output
+              id="perspectiveOriginYOutput"
+              for="perspectiveOriginYRange"></output>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="transformFieldset">
+        <legend>
+          <label>
+            <span>Other Properties</span>
+          </label>
+          <button
+            id="otherSectionReset"
+            class="resetSectionButton"
+            aria-label="Reset">
+            ↻
+          </button>
+        </legend>
+        <div class="controlsContainer">
+          <div>
+            <label>
+              <span><code>backface-visibility</code></span>
+              <input
+                type="checkbox"
+                checked
+                data-default="checked"
+                id="backfaceVisibilityCheckbox" />
+            </label>
+          </div>
+        </div>
+      </fieldset>
+    </section>
+  </fieldset>
+  <section id="outputSection">
+    <div id="outputContainer">
+      <div id="cube">
+        <div class="face front">1</div>
+        <div class="face back">2</div>
+        <div class="face right">3</div>
+        <div class="face left">4</div>
+        <div class="face top">5</div>
+        <div class="face bottom">6</div>
+      </div>
+      <div id="z0"><code>z:0px</code></div>
+    </div>
+    <div id="perspectiveDot"></div>
+  </section>
+</article>
+</body>
+</html>
